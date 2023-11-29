@@ -99,7 +99,7 @@ const ResultDisplay = ({ data }: ResultDisplayProps) => {
     <>
       <LogTitle>Topic: {data.title}</LogTitle>
       {sections.map((section, index) => (
-        <>
+        <div key={`sections-${index}`}>
           {section.title === "Thumbnail" ? (
             <ImageWrapper key={`section-thumbnail`}>
               <img src={data.thumbnail} alt="create_image" />
@@ -135,7 +135,7 @@ const ResultDisplay = ({ data }: ResultDisplayProps) => {
               </Section>
             </div>
           )}
-        </>
+        </div>
       ))}
     </>
   );
@@ -210,9 +210,14 @@ const SectionContent = styled.div`
   line-height: 1.7;
   position: relative;
   color: #505251;
+  text-align: justify;
 
   span {
     margin-right: 15px;
+  }
+
+  @media screen and (max-width: 480px) {
+    text-align: left;
   }
 `;
 

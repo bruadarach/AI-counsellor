@@ -4,6 +4,7 @@ import { CallGPT } from "./api/gpt";
 import Loading from "./components/Loading";
 import RequestInput from "./components/RequestInput";
 import ResultDisplay from "./components/ResultDisplay";
+import Button from "./components/Button";
 
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -23,7 +24,7 @@ function App() {
     setUserInput(value);
   };
 
-  const hadnleCallAPI = async () => {
+  const handleCallAPI = async () => {
     if (userInput === "") {
       alert("Please write down your concerns.");
       return;
@@ -48,7 +49,7 @@ function App() {
       <Wrapper>
         <Title>AI Psychological Counseling Service</Title>
         <SubTitle>
-          Pour out your daily concerns and worries to me, your GPT Counselor.
+          Pour out your daily concerns and worries to your GPT Counselor.
         </SubTitle>
         <SubTitle> Your challenges, My concrete remedies!</SubTitle>
         <UserInput>
@@ -57,9 +58,11 @@ function App() {
             handleUserInput={handleUserInput}
           />
         </UserInput>
-        <Button onClick={hadnleCallAPI} disabled={isLoading}>
-          Provide Counseling Note
-        </Button>
+        <Button
+          name={"Provide Counseling Note"}
+          handleClick={handleCallAPI}
+          isLoading={isLoading}
+        />
         <CounselingLog>
           {isLoading && <Loading />}
           <Line />
@@ -114,34 +117,6 @@ const SubTitle = styled.div`
 const UserInput = styled.div`
   margin: 40px 0;
   width: 100%;
-`;
-
-const Button = styled.button`
-  margin: 0 auto;
-  display: block;
-  width: 220px;
-  height: 50px;
-  border: none;
-  border-radius: 5px;
-  background: #e15b64;
-  color: #f4f4f4;
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #e15b64cd;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  @media screen and (max-width: 280px) {
-    width: 100%;
-  }
 `;
 
 const Line = styled.div`
